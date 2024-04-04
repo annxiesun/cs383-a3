@@ -1,7 +1,7 @@
 let socketId;
 
 const socket = io(
-  "https://8ad1-2620-101-f000-700-3dee-6e15-dee0-a4c5.ngrok-free.app",
+  "https://0940-2620-101-f000-700-3dee-6e15-dee0-a4c5.ngrok-free.app",
   {
     extraHeaders: {
       "ngrok-skip-browser-warning": true,
