@@ -34,3 +34,34 @@ canvas { border: 1px solid #ccc }
   padding: 20px;
   color: #008fff;
 }
+
+.colorbtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 200px;
+  border: none;
+}
+
+#red {
+  background-color: #fc0b03;
+}
+
+#pink {
+  background-color: #fc0380;
+}
+
+#yellow {
+  background-color: #fcce03;;
+}
+
+#green{
+  background-color:#90d615;
+}
+
+#blue {
+  background-color: #15b6d6;
+}
+
+#deepblue {
+  background-color: #1515d6;
+}

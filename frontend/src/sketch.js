@@ -105,12 +105,25 @@ export const mySketch = (p) => {
     })
   }
   p.mousePressed = () => {
-    // p.setTint([255, 0, 0]);
-  };
-
-  p.getCorrespondingFrame = (x) => {
+    console.log("hello")
+    p.clear();
+    p.background(0)
+    p.resizeCanvas(p.windowWidth, p.windowHeight)
   };
 
   p.windowResized = () => {
   };
+
 };
+
+document.addEventListener('fullscreenchange', () => {
+  console.log("hello")
+}, false);
+
+
+document.addEventListener('mozfullscreenchange',() => {
+  console.log("hello")
+}, false);
+// document.addEventListener('MSFullscreenChange', exitHandler, false);
+// document.addEventListener('webkitfullscreenchange', exitHandler, false);
+
