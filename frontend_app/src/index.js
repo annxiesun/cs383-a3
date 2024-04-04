@@ -10,10 +10,11 @@ if (process.env.NODE_ENV !== 'production') {
     location.reload(),
   )
 }
-window.addEventListener('click', () => {
+window.addEventListener('touchstart', () => {
   console.log("hi")
   document.body.requestFullscreen({
     navigationUI: "hide"
   })
+  document.body.webkitEnterFullScreen();
 })
 console.log(window.location.pathname)
