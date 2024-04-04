@@ -11,6 +11,8 @@ body {
   */
   -ms-user-select: none;
   user-select: none;
+  touch-action: none;
+  overflow: hidden;
 }
 
 /* body { cursor: none; } */
