@@ -121,3 +121,8 @@ el.addEventListener("touchend", () => {
   canvas.dispatchEvent(mouseEvent);
   e.preventDefault();
 })
+
+myel = document.getElementById("testbutton")
+myel.addEventListener("click", () => {
+  console.log("hello")
+})
