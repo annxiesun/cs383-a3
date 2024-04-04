@@ -11,7 +11,6 @@ if (process.env.NODE_ENV !== 'production') {
   )
 }
 
-console.log("hello")
 console.log(window.location.pathname)
 
 
