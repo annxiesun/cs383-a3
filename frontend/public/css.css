@@ -1,0 +1,17 @@
+html{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+body { cursor: none; }
+
+.canvas {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#home-section {
+  /* margin-top: 200px; */
+}
