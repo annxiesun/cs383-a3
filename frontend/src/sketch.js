@@ -105,7 +105,6 @@ export const mySketch = (p) => {
     })
   }
   p.mousePressed = () => {
-    console.log("hello")
     p.clear();
     p.background(0)
     p.resizeCanvas(p.windowWidth, p.windowHeight)
