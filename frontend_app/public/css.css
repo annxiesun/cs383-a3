@@ -11,8 +11,10 @@ body {
   */
   -ms-user-select: none;
   user-select: none;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* body { cursor: none; } */
 canvas { border: 1px solid #ccc }
+
+#canvas2 { display: none ;}

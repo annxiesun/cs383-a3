@@ -8,13 +8,15 @@ export const OPTIONS = {
 // Exporting a p.called 'mySketch'
 export const mySketch = (p) => {
   let i = 0
+  let ii = 1
+
   let image = null;
 
   p.setup = () => {
-    p.createCanvas(500, 500, p.WEBGL);
+    p.createCanvas(window.innerWidth, window.innerHeight, p.WEBGL);
     p.lights();
 
-    p.camera(0, -100, 100,
+    p.camera(0, 0, -800,
            0, 0, 0,
           0, 20, 0);
       image = p.loadImage('test.PNG'); 
@@ -22,20 +24,23 @@ export const mySketch = (p) => {
   }
 
   p.draw = () => {
-    p.background(200,200)
+    p.background(0)
+
+    p.translate(0-ii,0,0)
+
+    p.push()
+    p.stroke('#ebb434');
+    p.strokeWeight(2);
+    p.line(0, -200, 0, -1000);
+    p.pop()
 
     p.push()
     p.rotateY(20+i)
     p.texture(image);
-    p.plane(20, 20);
+    p.plane(500, 500);
     p.pop()
 
-    p.push()
-    p.translate(40,0,0)
-    p.rotateY(20+i)
-    p.plane(20, 20);
-    p.pop()
-    
+    ii += 0
     i += 0.01
   }
   p.mousePressed = () => {
