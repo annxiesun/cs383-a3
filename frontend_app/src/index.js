@@ -100,7 +100,7 @@ el.addEventListener("touchmove", function (e) {
   e.preventDefault();
 }, false);
 
-el.addEventListener("touchstart", () => {
+el.addEventListener("touchstart", (e) => {
   var touch = e.touches[0];
   var mouseEvent = new MouseEvent("mousemove", {
     clientX: touch.clientX,
@@ -111,7 +111,7 @@ el.addEventListener("touchstart", () => {
 })
 
 
-el.addEventListener("touchend", () => {
+el.addEventListener("touchend", (e) => {
   var touch = e.touches[0];
   var mouseEvent = new MouseEvent("mousemove", {
     clientX: touch.clientX,
