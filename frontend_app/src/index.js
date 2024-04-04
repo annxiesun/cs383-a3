@@ -35,6 +35,7 @@ var isDrawing, lastPoint;
 el.onmousedown = function(e) {
   isDrawing = true;
   lastPoint = { x: e.clientX, y: e.clientY };
+  e.preventDefault();
 };
 
 el.addEventListener(
@@ -83,6 +84,7 @@ el.onmousemove = function(e) {
   
   
   lastPoint = currentPoint;
+  e.preventDefault();
 };
 
 el.onmouseup = function() {
@@ -96,6 +98,7 @@ el.addEventListener("touchmove", function (e) {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 
 el.addEventListener("touchstart", () => {
@@ -105,6 +108,7 @@ el.addEventListener("touchstart", () => {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 })
 
 
@@ -115,4 +119,5 @@ el.addEventListener("touchend", () => {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 })
