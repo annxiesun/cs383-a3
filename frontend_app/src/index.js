@@ -31,26 +31,40 @@ ctx.lineJoin = ctx.lineCap = 'round';
 
 var isDrawing, lastPoint;
 
-el.onmousedown = function(e) {
+const startDraw = (e) => {
+  e.preventDefault();
   isDrawing = true;
   lastPoint = { x: e.clientX, y: e.clientY };
-  e.preventDefault();
-};
+}
 
-el.addEventListener(
-  "pointerdown",
-  (event) => {
-    console.log(event.pressure)
-    if (event.pressure === 0) {
-      // No pressure
-    } else if (event.pressure === 1) {
-      // Maximum pressure
-    } else {
-      // Default
-    }
-  },
-  false,
-);
+const endDraw = (e) => {
+  e.preventDefault();
+  isDrawing = false;
+}
+
+el.addEventListener("touchstart", function(e) {
+  startDraw(e)
+});
+
+el.addEventListener("mousedown", function(e) {
+  startDraw(e)
+});
+
+
+// el.addEventListener(
+//   "pointerdown",
+//   (event) => {
+//     console.log(event.pressure)
+//     if (event.pressure === 0) {
+//       // No pressure
+//     } else if (event.pressure === 1) {
+//       // Maximum pressure
+//     } else {
+//       // Default
+//     }
+//   },
+//   false,
+// );
 
 
 el.onmousemove = function(e) {
@@ -86,9 +100,13 @@ el.onmousemove = function(e) {
   e.preventDefault();
 };
 
-el.onmouseup = function() {
-  isDrawing = false;
-};
+el.addEventListener("touchend", function(e) {
+  endDraw(e)
+});
+
+el.addEventListener("mouseup", function(e) {
+  endDraw(e)
+});
 
 el.addEventListener("touchmove", function (e) {
   var touch = e.touches[0];
@@ -100,28 +118,3 @@ el.addEventListener("touchmove", function (e) {
   e.preventDefault();
 }, false);
 
-el.addEventListener("touchstart", (e) => {
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-  e.preventDefault();
-})
-
-
-el.addEventListener("touchend", (e) => {
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-  e.preventDefault();
-})
-
-myel = document.getElementById("testbutton")
-myel.addEventListener("click", () => {
-  console.log("hello")
-})
