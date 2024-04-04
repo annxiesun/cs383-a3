@@ -3,13 +3,6 @@
 const io = require('socket.io')();
 const eventHandlers = require('./eventHandlers');
 
-const {
-  BOTH_CHEAT,
-  BOTH_GOOD,
-  ONE_CHEAT,
-  NOT_ENOUGH,
-} = require('../../constants/constants');
-
 io.on('connection', (socket) => {
   let clients = eventHandlers.addToDB(socket.id);
   const connectedClients = () => clients.length;
@@ -18,49 +11,15 @@ io.on('connection', (socket) => {
     const clientCount = connectedClients();
     socket.emit('/root/welcome', { id: socket.id });
     io.sockets.emit('root/update_socket_count', { clientCount });
+    console.log(socket.id)
   });
 
-  socket.on('/root/cheat', (data) => {
-    const { id } = data;
+  socket.on('/root/addImage', (data) => {
+    const { base64String } = data;
+    console.log(base64String);
 
-    eventHandlers.addCheat(id).then(() => {
-      eventHandlers.getClientAction().then((res) => {
-        switch (res.clientAction) {
-        case NOT_ENOUGH:
-          console.log('Not enough actions');
-          return;
-        case ONE_CHEAT:
-          io.sockets.emit('/root/cheated', res);
-          break;
-        case BOTH_CHEAT:
-          io.sockets.emit('/root/both_cheated', res);
-          break;
-        case BOTH_GOOD:
-          io.sockets.emit('/root/done_good', res);
-        }
-      });
-    });
-  });
-
-  socket.on('/root/good', (data) => {
-    const { id } = data;
-  
-    eventHandlers.addGood(id).then(() => {
-      eventHandlers.getClientAction().then((res) => {
-        switch (res.clientAction) {
-        case NOT_ENOUGH:
-          console.log('Not enough actions');
-          return;
-        case ONE_CHEAT:
-          io.sockets.emit('/root/cheated', res);
-          break;
-        case BOTH_CHEAT:
-          io.sockets.emit('/root/both_cheated', res);
-          break;
-        case BOTH_GOOD:
-          io.sockets.emit('/root/done_good', res);
-        }
-      });
+    eventHandlers.addImage(base64String).then(() => {
+      io.sockets.emit('/root/addImageClient', { base64String });
     });
   });
 

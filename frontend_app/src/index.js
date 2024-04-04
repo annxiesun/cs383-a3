@@ -46,46 +46,15 @@ ctx.globalCompositeOperation = "source-over";
 // const offscreen = new OffscreenCanvas(800, 500);
 // const ctx_offscreen = offscreen.getContext("2d");
 
-let btn1 = document.getElementById('1');
-let btn2 = document.getElementById('2');
-
-
-btn1.addEventListener('click', () => {
-  // ctx2.globalCompositeOperation = "source-over";
-  // ctx2.drawImage(space_image, 0,0)
-  // ctx2.globalCompositeOperation = "source-in";
-  ctx2.fillStyle = "#000";
-  ctx2.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx2.drawImage(space_image, 0,0)
-  ctx2.globalCompositeOperation = "source-in";
-  ctx2.drawImage(canvas, 0,0)
-
-  ctx2.globalCompositeOperation = "destination-atop";
-  ctx2.drawImage(space_image, 0, 0);
-
-  ctx2.globalCompositeOperation = "source-over";
-  
-})
-
-btn2.addEventListener('click', () => {
-  var ImageData = ctx2.getImageData(0, 0, 500, 500);
-  var MyImage = new Image();
-  MyImage.src = getImageURL(ImageData, 500, 500);
-
-  // append image element to body
-  document.body.appendChild(MyImage);
-
-  //var image = canvas2.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-  // window.location.href=image; 
-})
-
 var isDrawing, lastPoint;
 
 const startDraw = (e) => {
   e.preventDefault();
   isDrawing = true;
-  lastPoint = { x: e.clientX, y: e.clientY };
+  lastPoint = { 
+    x: -canvas.getBoundingClientRect().left + e.clientX, 
+    y: -canvas.getBoundingClientRect().top + e.clientY 
+  };
 }
 
 const endDraw = (e) => {
@@ -102,26 +71,14 @@ canvas.addEventListener("mousedown", function(e) {
 });
 
 
-// canvas.addEventListener(
-//   "pointerdown",
-//   (event) => {
-//     console.log(event.pressure)
-//     if (event.pressure === 0) {
-//       // No pressure
-//     } else if (event.pressure === 1) {
-//       // Maximum pressure
-//     } else {
-//       // Default
-//     }
-//   },
-//   false,
-// );
-
 
 canvas.onmousemove = function(e) {
   if (!isDrawing) return;
   
-  var currentPoint = { x: e.clientX, y: e.clientY };
+  var currentPoint = { 
+    x: -canvas.getBoundingClientRect().left + e.clientX, 
+    y: -canvas.getBoundingClientRect().top + e.clientY 
+  };
   var dist = distanceBetween(lastPoint, currentPoint);
   var angle = angleBetween(lastPoint, currentPoint);
 
@@ -145,7 +102,7 @@ canvas.onmousemove = function(e) {
 
   }
   
-  ctx.drawImage(space_outline, 0, 0);
+  ctx.drawImage(space_outline, 175, 75);
 
   lastPoint = currentPoint;
   e.preventDefault();
@@ -170,12 +127,3 @@ canvas.addEventListener("touchmove", function (e) {
 }, false);
 
 
-
-function getImageURL(imgData, width, height) {
-  var canvas = document.createElement('canvas');
-  var ctx = canvas.getContext('2d');
-  canvas.width = width;
-  canvas.height = height;
-  ctx.putImageData(imgData, 0, 0);
-  return canvas.toDataURL(); //image URL
-}

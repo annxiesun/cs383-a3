@@ -7,27 +7,26 @@ import { myP5Sketch } from ".";
 // const cheatBtn = document.querySelector('#cheatBtn');
 // const goodBtn = document.querySelector('#goodBtn');
 
-// const socket = io('https://0a37-2620-101-f000-700-00-60-a4c5.ngrok-free.app', {
-//   extraHeaders: {
-//     "ngrok-skip-browser-warning": true
-//   }
-// });
+const socket = io('https://701a-2620-101-f000-700-00-dee0-a4c5.ngrok-free.app', {
+  extraHeaders: {
+    "ngrok-skip-browser-warning": true
+  }
+});
 
 
-// socket.emit('/root/new_socket_connected');
+socket.emit('/root/new_socket_connected');
 
 // Socket events
 // Whenever the server emits '/root/welcome' event, update website
-// socket.on('/root/welcome', welcomeUser);
+socket.on('/root/welcome', welcomeUser);
 // // Whenever the server emits '/root/update_socket_count' event, updates number of sockets connected
 // socket.on('root/update_socket_count', updateSocketCount);
 // // Whenever the server emits '/root/update_chat' event, add message to the chat
 // socket.on('/root/update_chat', addMessage);
 
 /********** HANDLE ACTIONS *********************/
-// socket.on('/root/cheated', onCheated);
-// socket.on('/root/done_good', onGood);
-// socket.on('/root/both_cheated', onBothCheated);
+socket.on('/root/addImageClient', addNewImage);
+
 
 /***********************************/
 function welcomeUser (data) {
@@ -36,8 +35,12 @@ function welcomeUser (data) {
   console.log("SOCKET ID:", id);
 }
 
-function updateSocketCount (data) {
-  const { clientCount } = data;
-  console.log("CLIENT COUNT:", clientCount);
+function addNewImage(data) {
+  const { base64String } = data;
+  myP5Sketch.addNewImage(base64String)
 }
+// function updateSocketCount (data) {
+//   const { clientCount } = data;
+//   console.log("CLIENT COUNT:", clientCount);
+// }
 

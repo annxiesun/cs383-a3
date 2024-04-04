@@ -2,7 +2,6 @@
 
 const actionQueue = require('../../models/actionQueue.models');
 const userModel = require('../../models/user.models');
-const { CHEAT, GOOD, BOTH_CHEAT, BOTH_GOOD, ONE_CHEAT, NOT_ENOUGH } = require('../../constants/constants');
 
 //Event handlers
 exports.addToDB = (id) => {
@@ -17,58 +16,8 @@ exports.welcomeClient  = () => { };
 
 // ONE_CHEAT | BOTH_CHEAT | BOTH_GOOD | NOT_ENOUGH
 
-exports.getClientAction = () => {
-  try {
-    const popped = actionQueue.popTwo();
-    return popped.then((res) => {
-      const [a1, a2] = res;
-      if (!a1) return {
-        clientAction: NOT_ENOUGH
-      };
-    
-      if (a1.action == GOOD && a2.action == GOOD) {
-        return {
-          people: [a1.id, a2.id],
-          clientAction: BOTH_GOOD
-        };
-      } else if (a1.action == CHEAT && a2.action == CHEAT) {
-        return {
-          people: [a1.id, a2.id],
-          clientAction: BOTH_CHEAT
-        };
-      }
-      return {
-        cheater: a1.action == CHEAT ? a1.id : a2.id,
-        people: [a1.id, a2.id],
-        clientAction: ONE_CHEAT
-      };
-    });
-    // if (!a1) return NOT_ENOUGH;
-  
-    // if (a1 == GOOD && a2 == GOOD) {
-    //   return  BOTH_GOOD;
-    // } else if (a1 == CHEAT && a2 == CHEAT) {
-    //   return BOTH_CHEAT;
-    // }
-    // return ONE_CHEAT;
-  
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-exports.addCheat = (id) => {
-  return actionQueue.addAction({
-    id,
-    action: CHEAT
-  });
-};
-
-exports.addGood = (id) => {
-  return actionQueue.addAction({
-    id,
-    action: GOOD
-  });
+exports.addImage = (imageData) => {
+  return actionQueue.addImage(imageData);
 };
 
 exports.onClientDisconnect = (id) => {
