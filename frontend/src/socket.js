@@ -7,7 +7,7 @@ import { myP5Sketch } from ".";
 // const cheatBtn = document.querySelector('#cheatBtn');
 // const goodBtn = document.querySelector('#goodBtn');
 
-const socket = io('https://701a-2620-101-f000-700-00-dee0-a4c5.ngrok-free.app', {
+const socket = io('https://e0ff-99-209-52-138.ngrok-free.app', {
   extraHeaders: {
     "ngrok-skip-browser-warning": true
   }

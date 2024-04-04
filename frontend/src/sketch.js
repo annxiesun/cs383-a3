@@ -17,7 +17,7 @@ export const mySketch = (p) => {
   }
 
   const getRandomHeight = () => {
-    return 180 
+    return 150 
   }
 
   const addNewImage = (base64String) => {

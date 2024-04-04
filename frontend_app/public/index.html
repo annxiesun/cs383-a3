@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>p5js-es6-boilerplate</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="css.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>p5js-es6-boilerplate</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css.css">
-</head>
+  <body>
+    <div id="cover" class="white-bg">THANK-YOU</div>
+    <div class="container2">
+      <div class="num-con">
+        <button id="sun">1</button>
+        <button id="star">2</button>
+        <button id="rock">3</button>
+        <button id="planet">4</button>
+        <button id="rings">5</button>
+        <button id="earth">6</button>
+      </div>
+      <div class="container">
+        <div>
+          <button class="colorbtn" id="pink"></button>
+          <button class="colorbtn" id="red"></button>
+          <button class="colorbtn" id="yellow"></button>
+          <button class="colorbtn" id="green"></button>
+          <button class="colorbtn" id="blue"></button>
+          <button class="colorbtn" id="deepblue"></button>
+        </div>
 
-<body>
-  <div class="container">
-    <div>
-      <button class="colorbtn" id="pink"></button>
-      <button class="colorbtn" id="red"></button>
-      <button class="colorbtn" id="yellow"></button>
-      <button class="colorbtn" id="green"></button>
-      <button class="colorbtn" id="blue"></button>
-      <button class="colorbtn" id="deepblue"></button>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <button class="btn" id="1">SUBMIT</button>
+      </div>
     </div>
-    <div>
-      <button id="sun">1</button>
-      <button id="star">2</button>
-      <button id="rock">3</button>
-      <button id="planet">4</button>
-      <button id="rings">5</button>
-      <button id="earth">6</button>
-    </div>
-    
-   <canvas id="canvas" width="800" height="600"></canvas>
-   <button class="btn" id="1">SUBMIT</button>
-  </div>
     <canvas id="canvas2" width="500" height="500"></canvas>
-  <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
-  <script src="index.js"></script>
-</body>
-
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="index.js"></script>
+  </body>
 </html>

@@ -1,7 +1,7 @@
 let socketId;
 
 const socket = io(
-  "https://701a-2620-101-f000-700-00-dee0-a4c5.ngrok-free.app",
+  "https://e0ff-99-209-52-138.ngrok-free.app",
   {
     extraHeaders: {
       "ngrok-skip-browser-warning": true,
@@ -48,6 +48,9 @@ sun_outline.src = 'space/sun_outline.png';
 var canvas = document.getElementById('canvas');
 var canvas2 = document.getElementById('canvas2');
 
+var finishScreen = document.getElementById('cover');
+
+
 var ctx = canvas.getContext('2d');
 var ctx2 = canvas2.getContext('2d');
 
@@ -71,6 +74,12 @@ btn1.addEventListener('click', () => {
   var data = getImageURL(image, 500, 500);
 
   socket.emit("/root/addImage", { base64String: data });
+  finishScreen.style.display = "flex"
+  const timer = setTimeout(() => {
+    finishScreen.style.display = "none"
+    clearTimeout(timer)
+  }, 10000)
+  redrawCanvas()
 })
 
 socket.emit("/root/new_socket_connected");

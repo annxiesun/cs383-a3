@@ -10,5 +10,10 @@ if (process.env.NODE_ENV !== 'production') {
     location.reload(),
   )
 }
-
+window.addEventListener('click', () => {
+  console.log("hi")
+  document.body.requestFullscreen({
+    navigationUI: "hide"
+  })
+})
 console.log(window.location.pathname)
